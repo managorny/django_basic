@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -10,11 +11,11 @@
 			<div class="header padding-site">
 				<a href="#"><img src="/static/img/logo.svg" alt="logo"></a>
 				<ul class="menu clearfix">
-					<li class="menu-list"><a href="/" class="menu-link">HOME</a></li>
-					<li class="menu-list"><a href="#" class="menu-link menu-link-active">PRODUCTS</a></li>
+					<li class="menu-list"><a href="{% url 'index' %}" class="menu-link">HOME</a></li>
+					<li class="menu-list"><a href="{% url 'products' %}" class="menu-link menu-link-active">PRODUCTS</a></li>
 <!--					<li class="menu-list"><a href="#" class="menu-link">HISTORY</a></li>-->
 <!--					<li class="menu-list"><a href="#" class="menu-link">SHOWROOM</a></li>-->
-					<li class="menu-list"><a href="/contacts/" class="menu-link">CONTACT</a></li>
+					<li class="menu-list"><a href="{% url 'contacts' %}" class="menu-link">CONTACT</a></li>
 					<li class="menu-list"><a href="#" class="menu-link"><img src="/static/icons/search.svg" alt="search"></a></li>
 				</ul>
 			</div>
