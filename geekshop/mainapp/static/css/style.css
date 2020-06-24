@@ -52,7 +52,7 @@ body {
   min-width: 600px;
   height: 800px;
   position: relative;
-  background-image: url(/static/img/slider-img.jpg);
+  background-image: url(/media/img/slider-img.jpg);
   background-size: cover;
 }
 .clearfix::after {
@@ -229,10 +229,10 @@ body {
   float: left;
 }
 .exclusive-block-1 {
-  background-image: url(/static/img/promo-img1.jpg);
+  background-image: url(/media/img/promo-img1.jpg);
 }
 .exclusive-block-2 {
-  background-image: url(/static/img/promo-img.jpg);
+  background-image: url(/media/img/promo-img.jpg);
 }
 .exclusive-text {
   margin-left: 50px;
@@ -283,7 +283,7 @@ body {
 .slider-center {
   height: 800px;
   position: relative;
-  background-image: url(/static/img/slider.jpg);
+  background-image: url(/media/img/slider.jpg);
 }
 .slider-center-text {
   padding-top: 287px;
@@ -317,7 +317,7 @@ body {
   width: 570px;
   height: 570px;
   float: left;
-  background-image: url(/static/img/product-1-lg.jpg);
+  background-image: url(/media/img/product-1-lg.jpg);
 }
 .gallery-main-text {
   padding-top: 186px;
@@ -340,7 +340,7 @@ body {
 }
 .mobile-app {
   height: 516px;
-  background-image: url(/static/img/back-img.jpg);
+  background-image: url(/media/img/back-img.jpg);
 }
 .mobile-app-text {
   padding-top: 125px;

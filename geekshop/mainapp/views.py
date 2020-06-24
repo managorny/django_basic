@@ -1,13 +1,28 @@
 from django.shortcuts import render
+import json
 
 
 def index(request):
-    return render(request, 'mainapp/index.html')
+    context = {
+        'page_title': 'Interior',
+    }
+    return render(request, 'mainapp/index.html', context)
 
 
 def products(request):
-    return render(request, 'mainapp/product-details.html')
+    context = {
+        'page_title': 'Products',
+    }
+    return render(request, 'mainapp/product-details.html', context)
 
 
 def contacts(request):
-    return render(request, 'mainapp/contacts.html')
+    with open('locations.json', 'r', encoding="utf-8") as file:
+        locations = json.load(file)
+
+    context = {
+        'page_title': 'Contacts',
+        'locations': locations,
+    }
+
+    return render(request, 'mainapp/contacts.html', context)
