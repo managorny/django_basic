@@ -28,3 +28,36 @@
 Сделал активные ссылки.
 
 Вопросов нет.
+
+
+* Урок 3.
+
+Словил ошбику при создании миграции для создания таблицы с продуктами.
+---
+SystemCheckError: System check identified some issues:
+
+ERRORS:
+mainapp.Product.image: (fields.E210) Cannot use ImageField because Pillow is not installed.
+        HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "pip install Pillow".
+mainapp.Product.price: (fields.E132) DecimalFields must define a 'max_digits' attribute.
+---
+Установил. Миграция создалась.
+
+Заметил:
+При создании таблицы с категориями сразу с полем created_at не было предупреждений о том, что нужен default.
+При добавлении этого поля уже после создания таблицы Продуктов, вышло сообщение о том, что я пытаюсь добавить значение
+без default. Вероятно это сделано для того, что таблица уже есть и возможно там есть уже строки и для этого нужно
+указать default. Но я знаю, что строк там нет, поэтому все ок и указал default в данный момент текущее время, но конечно
+по факту нигде оно не добавилось, а поля появились.
+
+Работал в терминале PyCharm, вызвал python manage.py shell. Но не было <ProductCategory object (None)> а после сохранения
+<ProductCategory object (1)>. Все время было <ProductCategory: Chair>.
+Python Console о Django не знает(
+Понял почему не было None и pk. Потому что сразу добавил __str__. Убрал временно __str__, проверил без него (отдельный скрин).
+
+
+Скриншоты работы в консоли в папке screenshots. Сохранил как есть, со всеми ошибками, которые появлялись.
+Также добавил скриншот из базы (результаты работы в консоли).
+
+Добавил загрузку из json через fixtures.
+Попробовал сделать dump базы.

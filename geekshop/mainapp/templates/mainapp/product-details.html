@@ -5,14 +5,7 @@
 	<div class="product-header padding-site">
 		{% include 'mainapp/includes/inc__main_menu.html' %}
 	</div>
-	<ul class="second-menu clearfix">
-		<li class="second-menu-list"><a href="#" class="second-menu-link second-menu-link-active">All</a></li>
-		<li class="second-menu-list"><a href="#" class="second-menu-link">Home</a></li>
-		<li class="second-menu-list"><a href="#" class="second-menu-link">Office</a></li>
-		<li class="second-menu-list"><a href="#" class="second-menu-link">Furnture</a></li>
-		<li class="second-menu-list"><a href="#" class="second-menu-link">Modern</a></li>
-		<li class="second-menu-list"><a href="#" class="second-menu-link">Classic</a></li>
-	</ul>
+	{% include 'mainapp/includes/inc__categories_menu.html' %}
 	<div class="product-info padding-site">
 		<ul class="product-info-image-text clearfix">
 			<li class="product-info-image-text-list"><img src="{% static 'img/slider1.jpg' %}" alt="slider1"></li>
@@ -53,9 +46,13 @@
 			</div>
 		</div>
 		<ul class="related-product-gallery">
-			<li class="related-product-gallery-list"><a href="#" class="related-product-gallery-link"><img src="{% static 'img/product-11.jpg' %}" alt="product-11"></a></li>
-			<li class="related-product-gallery-list"><a href="#" class="related-product-gallery-link"><img src="{% static 'img/product-21.jpg' %}" alt="product-21"></a></li>
-			<li class="related-product-gallery-list"><a href="#" class="related-product-gallery-link"><img src="{% static 'img/product-31.jpg' %}" alt="product-31"></a></li>
+			{% for product in products %}
+				<li class="related-product-gallery-list">
+					<a href="#" class="related-product-gallery-link">
+						<img src="/media/{{ product.image }}" alt="{{product.short_description}}">
+					</a>
+				</li>
+			{% endfor %}
 		</ul>
 	</div>
 	<div class="clr clearfix">

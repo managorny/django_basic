@@ -1,0 +1,8 @@
+<ul class="second-menu clearfix">
+    <li class="second-menu-list"><a href="#" class="second-menu-link second-menu-link-active">All</a></li>
+    {% for category in categories %}
+        <li class="second-menu-list">
+            <a href="#" class="second-menu-link">{{ category.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
