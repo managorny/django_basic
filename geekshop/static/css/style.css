@@ -37,6 +37,70 @@ body {
 body {
   font-family: Montserrat;
 }
+
+.login {
+    background: #fbfbfb;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 28em;
+    min-width: 500px;
+    margin: 100px auto;
+
+    position: relative;
+    display: block;
+}
+
+.login .head {
+    margin: 15px auto;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.login .form-control[type="submit"] {
+    margin: 10px auto;
+}
+
+.login button {
+    border: 1px solid #eaeaea;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.login button.last {
+    margin-bottom: 25px;
+}
+
+.login button a, .login button a:hover {
+    border: 1px solid #eaeaea;
+    color: #555;
+    text-decoration: none;
+}
+
+.login form {
+    margin-bottom: 10px;
+}
+
+.login div.user_avatar {
+    position: fixed;
+    left: 175px;
+    top: 200px;
+}
+
+.user_avatar img {
+    width: 300px;
+    border-radius: 25px;
+}
+
+.form-error {
+    color: red;
+}
+
+
 .container {
   max-width: 1366px;
   min-width: 600px;
@@ -52,7 +116,7 @@ body {
   min-width: 600px;
   height: 800px;
   position: relative;
-  background-image: url(/media/img/slider-img.jpg);
+  background-image: url(/static/img/slider-img.jpg);
   background-size: cover;
 }
 .clearfix::after {
@@ -229,10 +293,10 @@ body {
   float: left;
 }
 .exclusive-block-1 {
-  background-image: url(/media/img/promo-img1.jpg);
+  background-image: url(/static/img/promo-img1.jpg);
 }
 .exclusive-block-2 {
-  background-image: url(/media/img/promo-img.jpg);
+  background-image: url(/static/img/promo-img.jpg);
 }
 .exclusive-text {
   margin-left: 50px;
@@ -283,7 +347,7 @@ body {
 .slider-center {
   height: 800px;
   position: relative;
-  background-image: url(/media/img/slider.jpg);
+  background-image: url(/static/img/slider.jpg);
 }
 .slider-center-text {
   padding-top: 287px;
@@ -317,7 +381,7 @@ body {
   width: 570px;
   height: 570px;
   float: left;
-  background-image: url(/media/img/product-1-lg.jpg);
+  background-image: url(/static/img/product-1-lg.jpg);
 }
 .gallery-main-text {
   padding-top: 186px;
@@ -340,7 +404,7 @@ body {
 }
 .mobile-app {
   height: 516px;
-  background-image: url(/media/img/back-img.jpg);
+  background-image: url(/static/img/back-img.jpg);
 }
 .mobile-app-text {
   padding-top: 125px;

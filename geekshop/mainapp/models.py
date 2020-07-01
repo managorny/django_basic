@@ -10,7 +10,7 @@ class ProductCategory(models.Model):
         return f'{self.name}'
 
 
-class Products(models.Model):
+class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.PROTECT, verbose_name='Категория')
     name = models.CharField('Название', max_length=128)
     short_description = models.CharField('Краткое описание', max_length=128, blank=True)
