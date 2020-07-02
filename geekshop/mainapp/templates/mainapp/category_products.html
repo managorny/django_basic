@@ -1,0 +1,24 @@
+{% extends 'mainapp/base.html' %}
+
+{% block container %}
+	<div class="product-header padding-site">
+		{% include 'mainapp/includes/inc__main_menu.html' %}
+	</div>
+    {% include 'mainapp/includes/inc__categories_menu.html' %}
+	<div class="related-products-block clearfix padding-site">
+        <div class="related-products-head clearfix">
+            <div class="related-products-block-header">
+                Продукты в категории {{ category.name|title }}
+            </div>
+            <ul class="related-product-gallery">
+                {% for product in products %}
+                   <li class="related-product-gallery-list">
+                        <a href="{% url 'basket:add_product' product.pk %}" class="related-product-gallery-link">
+						    <img src="/media/{{ product.image }}" alt="{{product.short_description}}">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

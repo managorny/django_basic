@@ -38,7 +38,7 @@ body {
   font-family: Montserrat;
 }
 
-.login {
+.login, .register, .update {
     background: #fbfbfb;
     border: 1px solid #eaeaea;
     border-radius: 5px;
@@ -752,6 +752,14 @@ body {
   margin-top: 245px;
   margin-bottom: 120px;
 }
+.related-products-block {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+.related-products-list {
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
 .related-products-head {
   margin-bottom: 71px;
 }
@@ -760,6 +768,13 @@ body {
   font-size: 36px;
   font-weight: 700;
   display: inline;
+}
+.related-products-block-header {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #212121;
+  font-size: 36px;
+  font-weight: 700;
 }
 .related-product-gallery {
   list-style-type: none;
