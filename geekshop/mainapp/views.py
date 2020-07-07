@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+from mainapp.models import ProductCategory, Products
 
 
 def index(request):
@@ -10,8 +11,13 @@ def index(request):
 
 
 def products(request):
+    categories = ProductCategory.objects.all()
+    products_list = Products.objects.all()
+
     context = {
         'page_title': 'Products',
+        'categories': categories,
+        'products': products_list[:3],
     }
     return render(request, 'mainapp/product-details.html', context)
 
