@@ -44,3 +44,13 @@
 		</li>
 	</ul>
 </div>
+<div class="basket">
+	<a href="{% url 'basket:index' %}" class="menu-link">
+		<span>Корзина:</span><br>
+		<span>
+			{% if basket %}
+				{{ basket.0.total_cost|floatformat:0 }} руб ({{ basket.0.total_quantity }} шт)
+			{% endif %}
+		</span>
+	</a>
+</div>
