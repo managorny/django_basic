@@ -18,13 +18,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-
-
-
-import mainapp.views as mainapp
-
 urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),
+    path('auth/', include('authapp.urls', namespace='auth')),
 
     path('admin/', admin.site.urls, name="admin"),
 ]

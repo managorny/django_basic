@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import json
-from mainapp.models import ProductCategory, Products
+from mainapp.models import ProductCategory, Product
 
 
 def index(request):
@@ -12,7 +12,7 @@ def index(request):
 
 def products(request):
     categories = ProductCategory.objects.all()
-    products_list = Products.objects.all()
+    products_list = Product.objects.all()
 
     context = {
         'page_title': 'Products',
