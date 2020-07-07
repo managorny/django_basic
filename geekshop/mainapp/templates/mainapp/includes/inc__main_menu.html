@@ -21,7 +21,7 @@
 		</li>
 		{% if user.is_authenticated %}
             <li class="menu-list">
-                <a href="{#% url 'auth:user_update' %#}" class="menu-link">
+                <a href="{% url 'auth:update' %}" class="menu-link">
                     {{ user.first_name|default:'пользователь'|title }}
                 </a>
             </li>
