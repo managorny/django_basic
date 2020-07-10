@@ -1,23 +1,36 @@
+import random
+
 from django.shortcuts import render, get_object_or_404
 import json
 from mainapp.models import ProductCategory, Product
 
 
+def get_basket(request):
+    return request.user.is_authenticated and request.user.basket.all() or []
+
+
 def index(request):
     context = {
         'page_title': 'Interior',
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/index.html', context)
 
 
 def products(request):
     categories = ProductCategory.objects.all()
-    products_list = Product.objects.all()
+    # products_list = Product.objects.all()
+    hot_product_pk = random.choice(Product.objects.values_list('pk', flat=True))
+    hot_product = Product.objects.get(pk=hot_product_pk)
+    same_products = hot_product.category.product_set.exclude(pk=hot_product.pk)
 
     context = {
         'page_title': 'Products',
         'categories': categories,
-        'products': products_list[:3],
+        # 'products': products_list[:3],
+        'hot_product': hot_product,
+        'same_products': same_products,
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/product-details.html', context)
 
@@ -37,8 +50,22 @@ def category_products(request, pk):
         'categories': categories,
         'products': products_list_category,
         'category': category,
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/category_products.html', context)
+
+
+def product_page(request, pk):
+    categories = ProductCategory.objects.all()
+    product = get_object_or_404(Product, pk=pk)
+    context = {
+        'page_title': 'каталог',
+        'categories': categories,
+        'category': product.category,
+        'basket': get_basket(request),
+        'product': product,
+    }
+    return render(request, 'mainapp/product.html', context)
 
 
 def contacts(request):
@@ -48,6 +75,7 @@ def contacts(request):
     context = {
         'page_title': 'Contacts',
         'locations': locations,
+        'basket': get_basket(request),
     }
 
     return render(request, 'mainapp/contacts.html', context)

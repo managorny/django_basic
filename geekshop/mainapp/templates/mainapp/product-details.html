@@ -8,32 +8,29 @@
 	{% include 'mainapp/includes/inc__categories_menu.html' %}
 	<div class="product-info padding-site">
 		<ul class="product-info-image-text clearfix">
-			<li class="product-info-image-text-list"><img src="{% static 'img/slider1.jpg' %}" alt="slider1"></li>
+			<li class="product-info-image-text-list main-product-info-image-text-list"><img src="/media/{{ hot_product.image }}" alt="slider1"></li>
 			<li class="product-info-image-text-list product-info-text">
 				<div class="product-info-text-header">
-					Fishnet Chair
+					{{ hot_product.name }}
 				</div>
 				<div class="product-info-text-tag">
 					Hot Deal
 				</div>
 				<div class="product-info-text-price">
-					$ <span class="product-info-text-price-number">36.7</span> /sq
+					<span class="product-info-text-price-number">{{ hot_product.price }}</span> rub.
 				</div>
 				<div class="product-info-text-button">
-					<a href="#" class="product-info-text-button-link">Order Us<span class="product-info-text-arrow-button"><img src="{% static 'icons/arrow-white.svg' %}" alt="arrow"></span></a>
+					<a href="{% url 'basket:add_product' hot_product.pk %}" class="product-info-text-button-link">Order Us<span class="product-info-text-arrow-button"><img src="{% static 'icons/arrow-white.svg' %}" alt="arrow"></span></a>
 				</div>
 				<div class="product-info-text-text">
-					<p>The majesty of Mountains - Ugmonk style.</p><br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p><br>
-					<p> et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><br>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+					{{ hot_product.description }}
 				</div>
 			</li>
 		</ul>
 		<ul class="product-photo-slider clearfix">
-			<li class="product-photo-slider-list"><img src="{% static 'img/controll.jpg' %}" alt="controll"></li>
-			<li class="product-photo-slider-list"><img src="{% static 'img/controll11.jpg' %}" alt="controll11"></li>
-			<li class="product-photo-slider-list product-photo-slider-list-active"><img src="{% static 'img/controll2.jpg' %}" alt="controll2"></li>
+			<li class="product-photo-slider-list"><img src="/media/{{ hot_product.image }}" alt="controll"></li>
+			<li class="product-photo-slider-list"><img src="/media/{{ hot_product.image }}" alt="controll11"></li>
+			<li class="product-photo-slider-list product-photo-slider-list-active"><img src="/media/{{ hot_product.image }}" alt="controll2"></li>
 		</ul>
 	</div>
 	<div class="related-products clearfix padding-site">
@@ -46,9 +43,9 @@
 			</div>
 		</div>
 		<ul class="related-product-gallery">
-			{% for product in products %}
+			{% for product in same_products %}
 				<li class="related-product-gallery-list">
-					<a href="#" class="related-product-gallery-link">
+					<a href="{% url 'mainapp:product_page' product.pk %}" class="related-product-gallery-link">
 						<img src="/media/{{ product.image }}" alt="{{product.short_description}}">
 					</a>
 				</li>

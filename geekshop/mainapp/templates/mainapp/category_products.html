@@ -13,7 +13,7 @@
             <ul class="related-product-gallery">
                 {% for product in products %}
                    <li class="related-product-gallery-list">
-                        <a href="{% url 'basket:add_product' product.pk %}" class="related-product-gallery-link">
+                        <a href="{% url 'mainapp:product_page' product.pk %}" class="related-product-gallery-link">
 						    <img src="/media/{{ product.image }}" alt="{{product.short_description}}">
                         </a>
                     </li>
