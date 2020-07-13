@@ -16,6 +16,9 @@
               </div>
             {% endif %}
             {% csrf_token %}
+            {% if redirect %}
+                <input type="hidden" name="redirect" value="{{ redirect }}">
+            {% endif %}
             {{ form.username.label_tag }}
             {{ form.username }}
             {{ form.password.label_tag }}
@@ -28,5 +31,6 @@
             Зарегистрироваться
         </a>
     </div>
+    {{ request.META.HTTP_REFERER }}
 {% endblock %}
 

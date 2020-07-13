@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
+from django.template.loader import render_to_string
+from django.urls import reverse
 
 from basketapp.models import Basket
-from django.urls import reverse
 from mainapp.models import Product
+from geekshop.settings import LOGIN_URL
 
 
 @login_required
@@ -15,7 +17,7 @@ def index(request):
     return render(request, 'basketapp/index.html', context)
 
 
-@login_required
+@login_required(redirect_field_name='redirect')
 def add_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     basket = request.user.basket.filter(product=pk).first()
@@ -26,8 +28,10 @@ def add_product(request, pk):
 
     basket.quantity += 1
     basket.save()
-
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if LOGIN_URL in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(reverse('main:index'))
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
@@ -37,9 +41,24 @@ def delete_product(request, pk):
     return HttpResponseRedirect(reverse('basket:index'))
 
 
+@login_required
 def change(request, pk, quantity):
     if request.is_ajax():
-        print('ajax', pk, quantity)
-        return JsonResponse({
-            'status': True,
-        })
+        basket = get_object_or_404(Basket, pk=pk)
+        if int(quantity) <= 0:
+            basket.delete()
+        else:
+            basket.quantity = int(quantity)
+            basket.save()
+
+        context = {
+            'basket': request.user.basket.all(),
+        }
+        result = render_to_string('basketapp/includes/inc__basket_list.html', context, request=request)
+
+        return JsonResponse({'result': result})
+        # return JsonResponse({
+        #     'total_cost': basket.total_cost,
+        #     'total_quantity': basket.total_quantity,
+        #     'product_cost': basket.product_cost,
+        # })
