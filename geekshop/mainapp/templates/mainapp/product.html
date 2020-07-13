@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load my_filters %}
 
 {% block container %}
     <div class="product-header padding-site">
@@ -8,7 +9,7 @@
         {% include 'mainapp/includes/inc__categories_menu.html' %}
         <div class="product-info padding-site">
             <ul class="product-info-image-text clearfix">
-                <li class="product-info-image-text-list main-product-info-image-text-list"><img src="/media/{{ product.image }}" alt="slider1"></li>
+                <li class="product-info-image-text-list main-product-info-image-text-list"><img src="{{ product.image|media_folder_products }}" alt="slider1"></li>
                 <li class="product-info-image-text-list product-info-text">
                     <div class="product-info-text-header">
                         {{ product.name }}
@@ -25,9 +26,9 @@
                 </li>
             </ul>
             <ul class="product-photo-slider clearfix">
-                <li class="product-photo-slider-list"><img src="/media/{{ product.image }}" alt="controll"></li>
-                <li class="product-photo-slider-list"><img src="/media/{{ product.image }}" alt="controll11"></li>
-                <li class="product-photo-slider-list product-photo-slider-list-active"><img src="/media/{{ product.image }}" alt="controll2"></li>
+                <li class="product-photo-slider-list"><img src="{{ product.image|media_folder_products }}" alt="controll"></li>
+                <li class="product-photo-slider-list"><img src="{{ product.image|media_folder_products }}" alt="controll11"></li>
+                <li class="product-photo-slider-list product-photo-slider-list-active"><img src="{{ product.image|media_folder_products }}" alt="controll2"></li>
             </ul>
         </div>
 

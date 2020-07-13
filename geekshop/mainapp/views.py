@@ -1,7 +1,9 @@
 import random
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 import json
+
 from mainapp.models import ProductCategory, Product
 
 
@@ -17,12 +19,20 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 
-def products(request):
+def products(request, page=1):
     categories = ProductCategory.objects.all()
     # products_list = Product.objects.all()
-    hot_product_pk = random.choice(Product.objects.values_list('pk', flat=True))
+    hot_product_pk = random.choice(Product.objects.filter(is_active=True).values_list('pk', flat=True))
     hot_product = Product.objects.get(pk=hot_product_pk)
-    same_products = hot_product.category.product_set.exclude(pk=hot_product.pk)
+    same_products = hot_product.category.product_set.filter(is_active=True).exclude(pk=hot_product.pk)
+
+    products_paginator = Paginator(same_products, 1)
+    try:
+        same_products = products_paginator.page(page)
+    except PageNotAnInteger:
+        same_products = products_paginator.page(1)
+    except EmptyPage:
+        same_products = products_paginator.page(products_paginator.num_pages)
 
     context = {
         'page_title': 'Products',
@@ -35,15 +45,23 @@ def products(request):
     return render(request, 'mainapp/product-details.html', context)
 
 
-def category_products(request, pk):
+def category_products(request, pk, page=1):
     categories = ProductCategory.objects.all()
 
     if pk == '0':
         category = {'pk': 0, 'name': 'Все'}
-        products_list_category = Product.objects.all()
+        products_list_category = Product.objects.filter(is_active=True)
     else:
         category = get_object_or_404(ProductCategory, pk=pk)
-        products_list_category = category.product_set.all()
+        products_list_category = category.product_set.filter(is_active=True)
+
+    products_paginator = Paginator(products_list_category, 3)
+    try:
+        products_list_category = products_paginator.page(page)
+    except PageNotAnInteger:
+        products_list_category = products_paginator.page(1)
+    except EmptyPage:
+        products_list_category = products_paginator.page(products_paginator.num_pages)
 
     context = {
         'page_title': 'Products',
