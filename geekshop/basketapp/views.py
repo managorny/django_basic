@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.template.loader import render_to_string
@@ -10,9 +11,20 @@ from geekshop.settings import LOGIN_URL
 
 
 @login_required
-def index(request):
+def index(request, page=1):
+
+    basket = request.user.basket.all()
+
+    products_paginator = Paginator(basket, 2)
+    try:
+        basket = products_paginator.page(page)
+    except PageNotAnInteger:
+        basket = products_paginator.page(1)
+    except EmptyPage:
+        basket = products_paginator.page(products_paginator.num_pages)
+
     context = {
-        'basket': request.user.basket.all()
+        'basket': basket
     }
     return render(request, 'basketapp/index.html', context)
 
